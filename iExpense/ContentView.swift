@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-// Adding the Identifiable let know swift that this type of date is identifiable somehow
-//for this the item must have an ID
-
-
 struct ContentView: View {
     @State private var expenses = Expensess()
     @State private var showingAddExpense = false
@@ -20,7 +16,17 @@ struct ContentView: View {
             List {
                 //Doing the identifiable thing in the ExpenseItem, let us do this with the ForEach, It no longer need the id property.
                 ForEach(expenses.items) { item in
-                    Text(item.name)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(item.name)
+                                .font(.headline)
+                            Text(item.type)
+                        }
+                        
+                        Spacer()
+                        Text(item.amount, format: .currency(code: "USD"))
+                            
+                    }
                 }
                 .onDelete(perform: removeItems)
             }
