@@ -15,9 +15,11 @@ struct AddExpense: View {
     
     var expenses: Expensess
     
-    let types = ["Business", "Personal"]
+    
     
     var body: some View {
+        let types = expenses.getTypes()
+        
         NavigationStack {
             Form {
                 TextField("Name", text: $name)
@@ -35,6 +37,7 @@ struct AddExpense: View {
                     let item = ExpenseItem(name: name, type: type, amount: amount)
                     expenses.items.append(item)
                     dismiss()
+            
                 }
             }
         }

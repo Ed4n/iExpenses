@@ -25,6 +25,8 @@ class Expensess {
         }
     }
     
+    let types = ["Business", "Personal", "Home"]
+    
     init(){
         if let savedItems = UserDefaults.standard.data(forKey: "items"){
             if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems){
@@ -36,5 +38,7 @@ class Expensess {
         items = []
     }
     
-    
+    func getTypes() -> [String]{
+        return types
+    }
 }
